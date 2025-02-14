@@ -15,7 +15,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.KEY }}
           script: |
-            cd /home/ubuntu/fastapi-books-project/fastapi-book-project/Hng12_BackEnd_Stage02_FastApi_books_with_CI_CD
+            cd /home/ubuntu/fastapi-book-project/Hng12_BackEnd_Stage02_FastApi_books_with_CI_CD
             sudo apt-get update -y
             sudo apt-get install -y python3 python3-venv python3-pip supervisor
             sudo git pull origin main # pull the latest code
