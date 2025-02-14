@@ -15,8 +15,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.KEY }}
           script: |
-            cd /home/Desktop/fastapi-book-project
+            cd /home/ubuntu/fastapi-book-project
             sudo git pull origin main  # Pull latest changes
-            source env/bin/activate  # Activate virtual environment
-            sudo env/bin/python -m pip install -r requirements.txt  # Install dependencies
+            python3 -m venv env  # Create virtual environment
+            source venv/bin/activate  # Activate virtual environment
+            sudo venv/bin/python -m pip install -r requirements.txt  # Install dependencies
             sudo supervisorctl restart all  # Restart FastAPI server
