@@ -33,12 +33,13 @@ fastapi-book-project/
 │   └── test_books.py       # API endpoint tests
 ├── main.py                 # Application entry point
 ├── requirements.txt        # Project dependencies
+├── fastapi.conf            # Nginx configuration for FastAPI
 └── README.md
 ```
 
 ## Technologies Used
 
-- Python 3.12
+- Python 3.10
 - FastAPI
 - Pydantic
 - pytest
@@ -71,7 +72,7 @@ pip install -r requirements.txt
 1. Start the server:
 
 ```bash
-uvicorn main:app
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 2. Access the API documentation:
@@ -128,6 +129,21 @@ The API includes proper error handling for:
 - Invalid book IDs
 - Invalid genre types
 - Malformed requests
+
+## Deployment
+
+To deploy the application on an EC2 instance with Nginx, follow these steps:
+
+1. Ensure Nginx is installed and configured with the provided `fastapi.conf` file.
+2. Update the `.github/workflows/deploy.yml` to include steps for setting up Nginx and Supervisor.
+3. Use the following commands to restart the services after deployment:
+
+```bash
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl restart fastapi
+sudo systemctl restart nginx
+```
 
 ## Contributing
 
